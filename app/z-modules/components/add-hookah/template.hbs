@@ -1,0 +1,56 @@
+<ul>
+{{#each hookahList as |hookah|}}
+  <li>
+    <button {{action 'add' hookah}}>{{hookah.name}} - {{hookah.price}}грн</button>
+  </li>
+{{/each}}
+</ul>
+
+{{#if selectedHookahs}}
+  <div>
+    <table>
+      <thead>
+        <tr>
+          <th>id</th>
+          <th>name</th>
+          <th>price</th>
+          <th>actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        {{#each selectedHookahs as |hookah index|}}
+          <tr>
+            <td>
+              {{index}}
+            </td>
+            <td>
+              {{hookah.name}}
+            </td>
+            <td>
+              {{hookah.price}}грн
+            </td>
+            <td>
+              <button {{action 'remove' hookah.tempId}}>
+                remove
+              </button>
+            </td>
+          </tr>
+        {{/each}}
+      </tbody>
+      <tfoot>
+        <tr>
+          <td colspan="2">
+            Общая цена:
+          </td>
+          <td>
+            {{totalPrice}}грн
+          </td>
+        </tr>
+      </tfoot>
+    </table>
+  </div>
+
+  <div>
+    <button {{action save selectedHookahs}}>Сохранить</button>
+  </div>
+{{/if}}
