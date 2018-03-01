@@ -1,0 +1,13 @@
+<div>
+  {{#if fetchHookahRequests.isRunning}}
+    <div>
+      ...loading
+    </div>
+  {{else}}
+    {{#each groupedHookahRequests as |hookahRequest|}}
+      <div>
+        {{hookahRequest.title}} - {{hookahRequest.hookahs}} ({{hookahRequest.totalPrice}}грн)
+      </div>
+    {{/each}}
+  {{/if}}
+</div>

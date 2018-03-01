@@ -51,6 +51,12 @@
   </div>
 
   <div>
-    <button {{action save selectedHookahs}}>Сохранить</button>
+    <button {{action (perform save) }} disabled={{save.isRunning}}>
+      {{#if save.isRunning}}
+        Сохраняю...
+      {{else}}
+        Сохранить
+      {{/if}}
+    </button>
   </div>
 {{/if}}

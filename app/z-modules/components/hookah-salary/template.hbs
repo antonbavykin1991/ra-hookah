@@ -1,0 +1,19 @@
+<div>
+  {{#if fetchHookahRequests.isRunning}}
+    ...loading
+  {{else}}
+    <div>
+      <ul>
+        <li>
+          Общая прибыль с кальянов за текущий: {{totalPrice}}грн
+        </li>
+        <li>
+          Кол-во кальянов за месяц: {{hookahRequestsByUID.length}}
+        </li>
+        <li>
+          Твоя зп {{salaryTotalPrice}}грн ({{hookahRequestsByUID.length}} x 20грн)
+        </li>
+      </ul>
+    </div>
+  {{/if}}
+</div>
