@@ -1,54 +1,50 @@
-<ul>
-{{#each hookahList as |hookah|}}
-  <li>
-    <button {{action 'add' hookah}}>{{hookah.name}} - {{hookah.price}}грн</button>
-  </li>
-{{/each}}
-</ul>
+<div class="list-group">
+  {{#each hookahList as |hookah|}}
+    <a href="#" {{action 'add' hookah}} class="list-group-item list-group-item-action">
+      {{hookah.name}} - {{hookah.price}}грн
+    </a>
+  {{/each}}
+</div>
+
 
 {{#if selectedHookahs}}
-  <div>
-    <table>
-      <thead>
+  <table class="table table-bordered">
+    <thead>
+      <tr>
+        <th></th>
+        <th>name</th>
+        <th>price</th>
+        <th>actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      {{#each selectedHookahs as |hookah index|}}
         <tr>
-          <th>id</th>
-          <th>name</th>
-          <th>price</th>
-          <th>actions</th>
-        </tr>
-      </thead>
-      <tbody>
-        {{#each selectedHookahs as |hookah index|}}
-          <tr>
-            <td>
-              {{index}}
-            </td>
-            <td>
-              {{hookah.name}}
-            </td>
-            <td>
-              {{hookah.price}}грн
-            </td>
-            <td>
-              <button {{action 'remove' hookah.tempId}}>
-                remove
-              </button>
-            </td>
-          </tr>
-        {{/each}}
-      </tbody>
-      <tfoot>
-        <tr>
-          <td colspan="2">
-            Общая цена:
+          <td>
+            {{index}}
           </td>
           <td>
-            {{totalPrice}}грн
+            {{hookah.name}}
+          </td>
+          <td>
+            {{hookah.price}}грн
+          </td>
+          <td>
+            <button {{action 'remove' hookah.tempId}}>
+              remove
+            </button>
           </td>
         </tr>
-      </tfoot>
-    </table>
-  </div>
+      {{/each}}
+    </tbody>
+    <tfoot>
+      <tr>
+        <td colspan="4">
+          Общая цена: {{totalPrice}}грн
+        </td>
+      </tr>
+    </tfoot>
+  </table>
 
   <div>
     <button {{action (perform save) }} disabled={{save.isRunning}}>

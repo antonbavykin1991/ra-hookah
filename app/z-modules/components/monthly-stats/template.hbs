@@ -1,13 +1,20 @@
-<div>
-  {{#if fetchHookahRequests.isRunning}}
-    <div>
-      ...loading
-    </div>
-  {{else}}
-    {{#each groupedHookahRequests as |hookahRequest|}}
-      <div>
-        {{hookahRequest.title}} - {{hookahRequest.hookahs}} ({{hookahRequest.totalPrice}}грн)
-      </div>
-    {{/each}}
-  {{/if}}
+<div class="card">
+  <div class="card-header">
+    Featured
+  </div>
+  <div class="card-body">
+    <h5 class="card-title">Special title treatment</h5>
+    {{#if fetchHookahRequests.isRunning}}
+        <div>
+          ...loading
+        </div>
+      {{else}}
+
+        {{ember-chart
+            type='bar'
+            data=chartData
+            options=chartOptions
+        }}
+      {{/if}}
+  </div>
 </div>
