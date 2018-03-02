@@ -29,19 +29,34 @@ export default Component.extend({
 
   hookahRequests: computed.reads('fetchHookahRequests.lastSuccessful.value'),
 
-  groupedHookahRequests: computed('hookahRequests.[]', {
+  uid: computed.reads('session.currentUser.uid'),
+
+  hookahRequestsByUID: computed('hookahRequests.[]', 'uid', {
+    get () {
+      const uid = this.get('uid')
+
+      if (uid) {
+        return (this.get('hookahRequests') || [])
+          .filter((h) => get(h, 'userId') === uid)
+      } else {
+        return (this.get('hookahRequests') || [])
+      }
+    }
+  }),
+
+  groupedHookahRequests: computed('hookahRequestsByUID.[]', {
     get () {
       let startAt = getStartAt()
       const endAt = getEndAt()
       const groupedHookahRequests = []
-      const hookahRequests = (this.get('hookahRequests') || []).toArray()
+      const hookahRequestsByUID = (this.get('hookahRequestsByUID') || []).toArray()
 
       while(startAt < endAt) {
         const date = startAt.getDate()
         const start = +startAt
         const end = startAt.setDate(date + 1)
 
-        const hookahs = hookahInRange(hookahRequests, start, end)
+        const hookahs = hookahInRange(hookahRequestsByUID, start, end)
         const totalPrice = hookahs
           .reduce((total, hookah) => total + get(hookah, 'price'), 0)
 

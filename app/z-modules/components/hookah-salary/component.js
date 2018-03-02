@@ -22,7 +22,7 @@ export default Component.extend({
   hookahRequestsByUID: computed('hookahRequests.[]', 'uid', {
     get () {
       return (this.get('hookahRequests') || [])
-        .filterBy('userId', this.get('uid'), true)
+        .filter((h) => get(h, 'userId') === this.get('uid'))
     }
   }),
 

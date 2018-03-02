@@ -1,58 +1,93 @@
-<div class="list-group">
-  {{#each hookahList as |hookah|}}
-    <a href="#" {{action 'add' hookah}} class="list-group-item list-group-item-action">
-      {{hookah.name}} - {{hookah.price}}грн
-    </a>
-  {{/each}}
+<div class="card" style="width: 18rem;">
+  <div class="card-header">
+    Выберите кальян:
+  </div>
+  <div class="list-group">
+    {{#each hookahList as |hookah|}}
+      <a href="#" {{action 'add' hookah}} class="list-group-item list-group-item-action">
+        {{hookah.name}} - {{hookah.price}}грн
+      </a>
+    {{/each}}
+  </div>
 </div>
-
-
 {{#if selectedHookahs}}
-  <table class="table table-bordered">
-    <thead>
-      <tr>
-        <th></th>
-        <th>name</th>
-        <th>price</th>
-        <th>actions</th>
-      </tr>
-    </thead>
-    <tbody>
+  <div class="card" style="width: 18rem;">
+    <div class="card-header">
+      Добавить:
+    </div>
+    <ul class="list-group list-group-flush">
       {{#each selectedHookahs as |hookah index|}}
-        <tr>
-          <td>
-            {{index}}
-          </td>
-          <td>
-            {{hookah.name}}
-          </td>
-          <td>
-            {{hookah.price}}грн
-          </td>
-          <td>
-            <button {{action 'remove' hookah.tempId}}>
-              remove
-            </button>
-          </td>
-        </tr>
+        <li class="list-group-item">
+          {{hookah.name}} {{hookah.price}}грн
+          <button {{action 'remove' hookah.tempId}}>
+            remove
+          </button>
+        </li>
       {{/each}}
-    </tbody>
-    <tfoot>
-      <tr>
-        <td colspan="4">
-          Общая цена: {{totalPrice}}грн
-        </td>
-      </tr>
-    </tfoot>
-  </table>
-
-  <div>
-    <button {{action (perform save) }} disabled={{save.isRunning}}>
-      {{#if save.isRunning}}
-        Сохраняю...
-      {{else}}
-        Сохранить
-      {{/if}}
-    </button>
+      <li class="list-group-item">
+         Общая цена: {{totalPrice}}грн
+      </li>
+      <li class="list-group-item">
+        <button {{action (perform save) }} disabled={{save.isRunning}}>
+          {{#if save.isRunning}}
+            Сохраняю...
+          {{else}}
+            Сохранить
+          {{/if}}
+        </button>
+      </li>
+    </ul>
   </div>
 {{/if}}
+
+{{!-- <div class="col-md-12">
+  {{#if selectedHookahs}}
+    <table class="table table-bordered">
+      <thead>
+        <tr>
+          <th></th>
+          <th>name</th>
+          <th>price</th>
+          <th>actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        {{#each selectedHookahs as |hookah index|}}
+          <tr>
+            <td>
+              {{index}}
+            </td>
+            <td>
+              {{hookah.name}}
+            </td>
+            <td>
+              {{hookah.price}}грн
+            </td>
+            <td>
+              <button {{action 'remove' hookah.tempId}}>
+                remove
+              </button>
+            </td>
+          </tr>
+        {{/each}}
+      </tbody>
+      <tfoot>
+        <tr>
+          <td colspan="4">
+            Общая цена: {{totalPrice}}грн
+          </td>
+        </tr>
+      </tfoot>
+    </table>
+
+    <div>
+      <button {{action (perform save) }} disabled={{save.isRunning}}>
+        {{#if save.isRunning}}
+          Сохраняю...
+        {{else}}
+          Сохранить
+        {{/if}}
+      </button>
+    </div>
+  {{/if}}
+</div> --}}

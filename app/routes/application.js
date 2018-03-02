@@ -4,23 +4,31 @@ import { inject as service } from '@ember/service'
 export default Route.extend({
   session: service(),
 
-  beforeModel() {
-    return this.get('session')
-      .fetch()
-      .catch(function() {})
+  store: service(),
+
+  async beforeModel() {
+    try {
+      const session = await this.get('session').fetch()
+      await this.getPermissions()
+      return session
+    } catch(e) {
+      return e
+    }
+  },
+
+  async getPermissions () {
+    return await this.get('store').findAll('user')
   },
 
   actions: {
-    signIn(provider) {
-      this.get('session')
-        .open('firebase', { provider: provider})
-        .then(function(data) {
-          console.log(data.currentUser);
-        })
+    async signIn(provider) {
+      await this.get('session').open('firebase', { provider: provider})
+      await this.getPermissions()
     },
 
-    signOut() {
-      this.get('session').close()
+    async signOut() {
+      await this.get('session').close()
+      window.location.reload()
     }
   }
-});
+})

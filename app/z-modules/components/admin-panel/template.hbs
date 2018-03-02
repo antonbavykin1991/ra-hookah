@@ -1,0 +1,15 @@
+{{#each users as |user|}}
+  <div class="row">
+    <div class="col-md-12">
+      <h3>{{user.name}}</h3>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-3">
+      {{hookah-salary uid=user.userId}}
+    </div>
+    <div class="col-md-9">
+      {{monthly-stats uid=user.userId}}
+    </div>
+  </div>
+{{/each}}
