@@ -71,6 +71,20 @@ export default Component.extend({
     }
   }),
 
+  totalPrice: computed('hookahRequestsByUID.[]', {
+    get () {
+      return (this.get('hookahRequestsByUID') || [])
+        .reduce((total, item) => total + get(item, 'price'), 0)
+    }
+  }),
+
+  salaryTotalPrice: computed('hookahRequestsByUID.[]', {
+    get () {
+      const hookahRequestsLength = this.get('hookahRequestsByUID.length') || 0
+      return hookahRequestsLength * 20
+    }
+  }),
+
   chartData: computed('groupedHookahRequests.[]', {
     get () {
       const groupedHookahRequests = this.get('groupedHookahRequests')

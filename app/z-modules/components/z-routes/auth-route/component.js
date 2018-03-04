@@ -1,17 +1,16 @@
+import Ember from 'ember'
 import Component from '@ember/component';
 import { inject as service } from '@ember/service'
 
 export default Component.extend({
-  session: service(),
+  visitor: service(),
 
-  auth (email, password) {
-    this
-      .get('session')
-      .open('firebase', {
-        provider: 'password',
-        email,
-        password
-      })
-      .then(() => this.transitionTo('index'))
+  async auth (...args) {
+    try {
+      await this.get('visitor').auth(...args)
+      await this.transitionTo('index')
+    } catch (e) {
+      Ember.Logger.log(e)
+    }
   }
 })

@@ -1,20 +1,25 @@
 <div class="card">
   <div class="card-header">
-    Featured
+    Кальяны за месяц
   </div>
   <div class="card-body">
-    <h5 class="card-title">Special title treatment</h5>
     {{#if fetchHookahRequests.isRunning}}
         <div>
           ...loading
         </div>
       {{else}}
-
-        {{ember-chart
-            type='bar'
-            data=chartData
-            options=chartOptions
-        }}
+        <div>
+          <p>Общая прибыль с кальянов за текущий месяц: {{totalPrice}}грн</p>
+          <p>Кол-во кальянов за месяц: {{hookahRequestsByUID.length}}</p>
+          <p>Твоя зп {{salaryTotalPrice}}грн ({{hookahRequestsByUID.length}} x 20грн)</p>
+        </div>
+        <div>
+          {{ember-chart
+              type='bar'
+              data=chartData
+              options=chartOptions
+          }}
+        </div>
       {{/if}}
   </div>
 </div>

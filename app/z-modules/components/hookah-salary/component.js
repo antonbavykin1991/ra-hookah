@@ -21,8 +21,14 @@ export default Component.extend({
 
   hookahRequestsByUID: computed('hookahRequests.[]', 'uid', {
     get () {
-      return (this.get('hookahRequests') || [])
-        .filter((h) => get(h, 'userId') === this.get('uid'))
+      const uid = this.get('uid')
+
+      if (uid) {
+        return (this.get('hookahRequests') || [])
+          .filter((h) => get(h, 'userId') === uid)
+      } else {
+        return (this.get('hookahRequests') || [])
+      }
     }
   }),
 

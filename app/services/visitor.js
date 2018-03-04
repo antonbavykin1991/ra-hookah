@@ -13,11 +13,44 @@ export default Service.extend({
     get () {
       return this.get('store')
         .peekAll('user')
-        .findBy('userId', get(this.get('model'), 'uid'), true)
+        .find(u => get(u, 'userId') === this.get('model.uid'))
     }
   }),
 
   isAdmin: computed.readOnly('user.isAdmin'),
 
-  isClient: computed.readOnly('user.isClient')
+  isClient: computed.readOnly('user.isClient'),
+
+  async getUsers() {
+    return await this.get('store').findAll('user')
+  },
+
+  async fetchSession() {
+    try {
+      const session = await this.get('session').fetch()
+      await this.getUsers()
+      return session
+    } catch(e) {
+      return e
+    }
+  },
+
+  async auth(email, password) {
+    const currentUser = await this
+      .get('session')
+      .open('firebase', {
+        provider: 'password',
+        email,
+        password
+      })
+
+    await this.getUsers()
+
+    return currentUser
+  },
+
+  async signOut() {
+    await this.get('session').close()
+    window.location.reload()
+  }
 })
