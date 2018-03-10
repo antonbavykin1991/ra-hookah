@@ -18,7 +18,7 @@ export function hookahInRange (hookahRequests, start, end) {
 export default Component.extend({
   store: service(),
 
-  session: service(),
+  visitor: service(),
 
   didInsertElement(...args) {
     this._super(...args)
@@ -29,7 +29,7 @@ export default Component.extend({
 
   hookahRequests: computed.reads('fetchHookahRequests.lastSuccessful.value'),
 
-  uid: computed.reads('session.currentUser.uid'),
+  uid: computed.reads('visitor.uid'),
 
   hookahRequestsByUID: computed('hookahRequests.[]', 'uid', {
     get () {

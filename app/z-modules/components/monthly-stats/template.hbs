@@ -1,25 +1,26 @@
-<div class="card">
-  <div class="card-header">
-    Кальяны за месяц
-  </div>
-  <div class="card-body">
-    {{#if fetchHookahRequests.isRunning}}
-        <div>
-          ...loading
-        </div>
-      {{else}}
-        <div>
+{{#paper-card as |card|}}
+  {{#card.title as |title|}}
+    {{#title.text as |text|}}
+      {{#text.headline}}Кальяны за месяц{{/text.headline}}
+    {{/title.text}}
+  {{/card.title}}
+
+  {{#card.content class="layout-column layout-align-center"}}
+    {{#paper-list}}
+      {{#paper-item class="md-3-line"}}
+        <div class="md-list-item-text">
           <p>Общая прибыль с кальянов за текущий месяц: {{totalPrice}}грн</p>
           <p>Кол-во кальянов за месяц: {{hookahRequestsByUID.length}}</p>
           <p>Твоя зп {{salaryTotalPrice}}грн ({{hookahRequestsByUID.length}} x 20грн)</p>
         </div>
-        <div>
-          {{ember-chart
-              type='bar'
-              data=chartData
-              options=chartOptions
-          }}
-        </div>
-      {{/if}}
-  </div>
-</div>
+      {{/paper-item}}
+    {{/paper-list}}
+    <div>
+      {{ember-chart
+          type='bar'
+          data=chartData
+          options=chartOptions
+      }}
+    </div>
+  {{/card.content}}
+{{/paper-card}}

@@ -8,6 +8,15 @@ module.exports = function(defaults) {
       plugins: [
         'transform-object-rest-spread'
       ]
+    },
+    'asset-cache': {
+      include: [
+        'assets/**/*'
+      ]
+    },
+    'esw-cache-fallback': {
+      patterns: [ '/' ],
+      version: '1.0.2' // Changing the version will bust the cache
     }
   });
 

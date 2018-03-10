@@ -1,17 +1,19 @@
-<div>
-  <div class="card" style="width: 18rem;">
-    <div class="card-header">
-      Featured
-    </div>
-    {{#if fetchHookahRequests.isRunning}}
-      ...loading
-    {{else}}
-      <ul class="list-group list-group-flush">
-        <li class="list-group-item">Общая прибыль с кальянов за текущий месяц: {{totalPrice}}грн</li>
-        <li class="list-group-item">Кол-во кальянов за месяц: {{hookahRequestsByUID.length}}</li>
-        <li class="list-group-item">Твоя зп {{salaryTotalPrice}}грн ({{hookahRequestsByUID.length}} x 20грн)</li>
-      </ul>
-    {{/if}}
-  </div>
-</div>
+{{#paper-card as |card|}}
+  {{#card.title as |title|}}
+    {{#title.text as |text|}}
+      {{#text.headline}}Прибыль за месяц{{/text.headline}}
+    {{/title.text}}
+  {{/card.title}}
 
+  {{#card.content class="layout-column layout-align-center"}}
+    {{#paper-list}}
+      {{#paper-item class="md-3-line"}}
+        <div class="md-list-item-text">
+          <p>Общая прибыль с кальянов за текущий месяц: {{totalPrice}}грн</p>
+          <p>Кол-во кальянов за месяц: {{hookahRequestsByUID.length}}</p>
+          <p>Твоя зп {{salaryTotalPrice}}грн ({{hookahRequestsByUID.length}} x 20грн)</p>
+        </div>
+      {{/paper-item}}
+    {{/paper-list}}
+  {{/card.content}}
+{{/paper-card}}

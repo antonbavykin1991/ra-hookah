@@ -7,6 +7,10 @@ import config from '../config/environment'
 export default Mixin.create({
   session: service(),
 
+  fastboot: service(),
+
+  isFastBoot: computed.reads('fastboot.isFastBoot'),
+
   /**
     The route to transition to for authentication. The
     {{#crossLink "AuthenticatedRouteMixin"}}{{/crossLink}} will transition to
@@ -33,6 +37,10 @@ export default Mixin.create({
     @public
   */
   beforeModel() {
+    if (this.get('isFastBoot')) {
+      return
+    }
+
     if (!this.get('session.isAuthenticated')) {
       let authenticationRoute = this.get('authenticationRoute')
 

@@ -6,7 +6,7 @@ import { FETCH_HOOKAH_REQUESTS } from 'ra/tasks'
 
 export default Component.extend({
   store: service(),
-  session: service(),
+  visitor: service(),
 
   didInsertElement(...args) {
     this._super(...args)
@@ -15,7 +15,7 @@ export default Component.extend({
 
   fetchHookahRequests: task(FETCH_HOOKAH_REQUESTS),
 
-  uid: computed.reads('session.currentUser.uid'),
+  uid: computed.reads('visitor.uid'),
 
   hookahRequests: computed.reads('fetchHookahRequests.lastSuccessful.value'),
 

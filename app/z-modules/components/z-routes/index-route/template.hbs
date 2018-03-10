@@ -1,12 +1,36 @@
-{{#if visitor.isAdmin}}
-  {{admin-panel}}
-{{else}}
-  <div class="row">
-    <div class="col-md-3">
-      {{add-hookah}}
-    </div>
-    <div class="col-md-6">
-      {{monthly-stats}}
-    </div>
+{{#paper-toolbar}}
+  {{#paper-toolbar-tools}}
+    {{#paper-button iconButton=true}}
+      {{paper-icon "menu"}}
+    {{/paper-button}}
+    <h2>
+      Добро Пожаловать
+    </h2>
+    <span class="flex"></span>
+    {{#paper-button onClick=(action signOut)}}
+      Выйти
+    {{/paper-button}}
+  {{/paper-toolbar-tools}}
+{{/paper-toolbar}}
+
+{{#paper-content class="md-padding"}}
+  <div>
+    {{#if visitor.isAdmin}}
+      {{admin-panel}}
+    {{else if visitor.isClient}}
+      <div class="row">
+        <div class="col-md-3">
+          {{add-hookah}}
+        </div>
+        <div class="col-md-6">
+          {{monthly-stats}}
+        </div>
+      </div>
+    {{else}}
+      <div>
+        loading....
+      </div>
+    {{/if}}
   </div>
-{{/if}}
+{{/paper-content}}
+

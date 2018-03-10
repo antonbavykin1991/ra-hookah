@@ -4,6 +4,7 @@ import { task } from 'ember-concurrency'
 import Component from '@ember/component'
 import { computed } from '@ember/object'
 import { inject as service } from '@ember/service'
+import $ from 'jquery'
 
 const stateToComputed = state => {
   return {
@@ -26,17 +27,27 @@ const SAVE_FN = function * () {
   for (let i=0; i < selectedHookahs.length; i++) {
     yield this.get('store').createRecord('hookah-request', {
       ...selectedHookahs[i],
-      userId: this.get('session.currentUser.uid')
+      userId: this.get('visitor.uid')
     }).save()
   }
 
   yield this.send('clear')
+  this.set('showAnimatedDialog', false)
+
+  const hookah = selectedHookahs[0]
+
+  this.set('showToast', true)
+
+  yield $.post('/notify', {
+    username: this.get('visitor.user.name'),
+    message: `${hookah.name} - ${hookah.price}грн`
+  })
 }
 
 const AddHookahComponent = Component.extend({
   store: service(),
 
-  session: service(),
+  visitor: service(),
 
   totalPrice: computed('selectedHookahs.@each.price', {
     get () {
@@ -44,7 +55,13 @@ const AddHookahComponent = Component.extend({
     }
   }),
 
-  save: task(SAVE_FN)
+  save: task(SAVE_FN),
+
+  selectHookah (hookah) {
+    this.send('clear')
+    this.send('add', hookah)
+    this.set('showAnimatedDialog', true)
+  }
 })
 
 export default connect(stateToComputed, dispatchToActions)(AddHookahComponent)

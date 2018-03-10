@@ -22,6 +22,10 @@ module.exports = function(environment) {
       salaryMonthStart: 11
     },
 
+    fastboot: {
+      hostWhitelist: ['ra-hookah.firebaseapp.com', /^localhost:\d+$/]
+    },
+
     authenticationRoute: 'auth',
 
     routeAfterAuthentication: 'index',
