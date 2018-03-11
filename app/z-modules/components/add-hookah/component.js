@@ -38,9 +38,9 @@ const SAVE_FN = function * () {
 
   this.set('showToast', true)
 
-  yield $.post('/notify', {
+  this.get('slack').webhook({
     username: this.get('visitor.user.name'),
-    message: `${hookah.name} - ${hookah.price}грн`
+    text: `${hookah.name} - ${hookah.price}грн`
   })
 }
 
@@ -48,6 +48,8 @@ const AddHookahComponent = Component.extend({
   store: service(),
 
   visitor: service(),
+
+  slack: service(),
 
   totalPrice: computed('selectedHookahs.@each.price', {
     get () {

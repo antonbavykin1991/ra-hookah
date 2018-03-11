@@ -67,13 +67,15 @@
     "popper.js": "1.12.9",
     "redux": "3.7.2",
     "redux-thunk": "2.2.0",
-    "torii": "^0.10.1"
+    "torii": "^0.10.1",
+    "slack-node": "^0.1.8"
   },
   "engines": {
     "node": "^4.5 || 6.* || >= 7.*"
   },
   "dependencies": {
     "babel-plugin-transform-object-rest-spread": "^6.26.0",
+    "ember-browserify": "^1.2.1",
     "firebase-admin": "^5.10.0"
   }
 }

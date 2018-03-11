@@ -11,12 +11,6 @@ let app = express();
 //   databaseURL: "https://ra-hookah.firebaseio.com",
 // });
 
-var Slack = require('slack-node');
-
-webhookUri = "https://hooks.slack.com/services/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";
-
-slack = new Slack();
-slack.setWebhook(webhookUri);
 
 app.get('/*', (req, res) => {
   fastboot.visit('/', {
@@ -58,19 +52,19 @@ function failure(e, res) {
 
 exports.ssr = functions.https.onRequest(app);
 
-exports.slack = functions.https.onRequest((request, response) => {
-  slack.webhook({
-    channel: "#ra",
-    username: request.body.username,
-    text: request.body.message
-  }, function(err, res) {
-    console.log(res);
-    response.json({
-      err,
-      res
-    })
-  });
-})
+// exports.slack = functions.https.onRequest((request, response) => {
+//   slack.webhook({
+//     channel: "#ra",
+//     username: request.body.username,
+//     text: request.body.message
+//   }, function(err, res) {
+//     console.log(res);
+//     response.json({
+//       err,
+//       res
+//     })
+//   });
+// })
 // exports.helloWorld = functions.https.onRequest((request, response) => {
 //   admin
 //     .auth()

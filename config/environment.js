@@ -30,6 +30,11 @@ module.exports = function(environment) {
 
     routeAfterAuthentication: 'index',
 
+    slack: {
+      url: 'https://hooks.slack.com/services/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',
+      channel: '#ra'
+    },
+
     firebase: {
       apiKey: "AIzaSyAyRRXezG3476CAs5BYBQggz3D2F8GBtlE",
       authDomain: "ra-hookah.firebaseapp.com",

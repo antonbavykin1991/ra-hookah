@@ -8,10 +8,6 @@
     ],
     "rewrites": [
       {
-        "source": "/notify",
-        "function": "slack"
-      },
-      {
         "source": "**",
         "function": "ssr"
       }
