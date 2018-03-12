@@ -39,6 +39,25 @@ export default Component.extend({
     }
   }),
 
+  raTotalPrice: computed('hookahRequestsByUID.[]', {
+    get () {
+      const hookahRequestsLength = this.get('hookahRequestsByUID.length') || 0
+      return hookahRequestsLength * 50
+    }
+  }),
+
+  ownerTotalPrice: computed('totalPrice', 'salaryTotalPrice', 'raTotalPrice', {
+    get () {
+      const {
+        totalPrice = 0,
+        salaryTotalPrice = 0,
+        raTotalPrice = 0
+      } = this.getProperties('totalPrice', 'salaryTotalPrice', 'raTotalPrice')
+
+      return totalPrice - (salaryTotalPrice + raTotalPrice)
+    }
+  }),
+
   salaryTotalPrice: computed('hookahRequestsByUID.[]', {
     get () {
       const hookahRequestsLength = this.get('hookahRequestsByUID.length') || 0

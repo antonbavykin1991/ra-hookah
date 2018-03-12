@@ -9,8 +9,10 @@
     {{#paper-list}}
       {{#paper-item class="md-3-line"}}
         <div class="md-list-item-text">
-          <p>Общая прибыль с кальянов за текущий месяц: {{totalPrice}}грн</p>
-          <p>Кол-во кальянов за месяц: {{hookahRequestsByUID.length}}</p>
+          <p>Общая прибыль с кальянов: {{totalPrice}}грн</p>
+          <p>Кол-во кальянов: {{hookahRequestsByUID.length}}</p>
+          <p>Прибыль заведения: {{raTotalPrice}}грн ({{hookahRequestsByUID.length}} * 50)</p>
+          <p>Прибыль Антохи: {{ownerTotalPrice}}грн ({{totalPrice}} - {{raTotalPrice}} - {{salaryTotalPrice}})</p>
           <p>Твоя зп {{salaryTotalPrice}}грн ({{hookahRequestsByUID.length}} x 20грн)</p>
         </div>
       {{/paper-item}}
