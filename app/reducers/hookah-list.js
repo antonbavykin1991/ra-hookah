@@ -8,7 +8,7 @@ const initialState = {
     name: 'Fumary',
     img: '/images/fumari.jpg',
   },{
-    price: 180,
+    price: 200,
     name: 'Starbuzz',
     img: '/images/star.jpg',
   },{
