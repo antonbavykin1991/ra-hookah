@@ -1,12 +1,13 @@
 import Component from '@ember/component'
 import { inject as service } from '@ember/service'
-import { computed, get } from '@ember/object'
+import { computed, get, observer} from '@ember/object'
 import { task } from 'ember-concurrency'
 import { FETCH_HOOKAH_REQUESTS } from 'ra/tasks'
 
 export default Component.extend({
   store: service(),
   visitor: service(),
+  globalDates: service(),
 
   didInsertElement(...args) {
     this._super(...args)
@@ -14,6 +15,10 @@ export default Component.extend({
   },
 
   fetchHookahRequests: task(FETCH_HOOKAH_REQUESTS),
+
+  onChangeStartAt: observer('globalDates.endAt', 'globalDates.startAt', function () {
+    this.get('fetchHookahRequests').perform()
+  }),
 
   uid: computed.reads('visitor.uid'),
 

@@ -16,7 +16,7 @@ module.exports = function(defaults) {
     },
     'esw-cache-fallback': {
       patterns: [ '/' ],
-      version: '1.0.6' // Changing the version will bust the cache
+      version: '1.0.8' // Changing the version will bust the cache
     }
   });
 

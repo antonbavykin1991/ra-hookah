@@ -1,12 +1,8 @@
 import Component from '@ember/component'
 import { inject as service } from '@ember/service'
-import { computed, get } from '@ember/object'
+import { computed, get, observer } from '@ember/object'
 import { task } from 'ember-concurrency'
 import { FETCH_HOOKAH_REQUESTS } from 'ra/tasks'
-import {
-  getStartAt,
-  getEndAt
-} from 'ra/utils/date'
 
 import moment from 'moment'
 
@@ -20,10 +16,20 @@ export default Component.extend({
 
   visitor: service(),
 
+  globalDates: service(),
+
+  startAt: computed.reads('globalDates.startAt'),
+
+  endAt: computed.reads('globalDates.endAt'),
+
   didInsertElement(...args) {
     this._super(...args)
     this.get('fetchHookahRequests').perform()
   },
+
+  onChangeStartAt: observer('startAt', 'endAt', function () {
+    this.get('fetchHookahRequests').perform()
+  }),
 
   fetchHookahRequests: task(FETCH_HOOKAH_REQUESTS),
 
@@ -44,10 +50,10 @@ export default Component.extend({
     }
   }),
 
-  groupedHookahRequests: computed('hookahRequestsByUID.[]', {
+  groupedHookahRequests: computed('hookahRequestsByUID.[]', 'startAt', 'endAt', {
     get () {
-      let startAt = getStartAt()
-      const endAt = getEndAt()
+      let startAt = new Date(this.get('startAt'))
+      const endAt = new Date(this.get('endAt'))
       const groupedHookahRequests = []
       const hookahRequestsByUID = (this.get('hookahRequestsByUID') || []).toArray()
 

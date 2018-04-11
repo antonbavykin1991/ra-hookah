@@ -16,12 +16,66 @@
 {{#paper-content class="md-padding"}}
   <div>
     {{#if visitor.isAdmin}}
+      {{#paper-card as |card|}}
+        {{#card.title as |title|}}
+          {{#title.text as |text|}}
+            {{#text.headline}}Выберите дату отображения данных{{/text.headline}}
+          {{/title.text}}
+        {{/card.title}}
+
+        {{#card.content class="layout-column layout-align-center"}}
+          <div class="layout layout-sm-column">
+            {{paper-pikaday
+                class="flex-100"
+                value=startAt
+                label="начальная дата"
+                onChange=(action selectStartAt)
+            }}
+          </div>
+
+          <div class="layout layout-sm-column">
+            {{paper-pikaday
+                class="flex-100"
+                value=endAt
+                label="Конечная дата"
+                onChange=(action selectEndAt)
+            }}
+          </div>
+        {{/card.content}}
+      {{/paper-card}}
       {{admin-panel}}
     {{else if visitor.isClient}}
       <div class="row">
         <div class="col-md-3">
           {{add-hookah}}
         </div>
+        {{#paper-card as |card|}}
+          {{#card.title as |title|}}
+            {{#title.text as |text|}}
+              {{#text.headline}}Выберите дату отображения данных{{/text.headline}}
+            {{/title.text}}
+          {{/card.title}}
+
+          {{#card.content class="layout-column layout-align-center"}}
+            <div class="layout layout-sm-column">
+              {{paper-pikaday
+                  class="flex-100"
+                  value=startAt
+                  label="начальная дата"
+                  onChange=(action selectStartAt)
+              }}
+            </div>
+
+            <div class="layout layout-sm-column">
+              {{paper-pikaday
+                  class="flex-100"
+                  value=endAt
+                  label="Конечная дата"
+                  onChange=(action selectEndAt)
+              }}
+            </div>
+          {{/card.content}}
+        {{/paper-card}}
         <div class="col-md-6">
           {{monthly-stats}}
         </div>

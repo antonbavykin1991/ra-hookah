@@ -26,8 +26,6 @@ export function getStartAt() {
     startAt.setMonth(startAt.getMonth() - 1)
   }
 
-  startAt.setMonth(startAt.getMonth() - 1)
-
   startAt.setDate(salaryMonthStart)
 
   return removeHours(startAt)
