@@ -1,0 +1,45 @@
+[debug] [2019-11-07T16:04:59.764Z] ----------------------------------------------------------------------
+[debug] [2019-11-07T16:04:59.767Z] Command:       /Users/macbook/.nvm/versions/node/v8.5.0/bin/node /Users/macbook/.nvm/versions/node/v8.5.0/bin/firebase serve --only functions,hosting
+[debug] [2019-11-07T16:04:59.767Z] CLI Version:   7.6.2
+[debug] [2019-11-07T16:04:59.767Z] Platform:      darwin
+[debug] [2019-11-07T16:04:59.767Z] Node Version:  v8.5.0
+[debug] [2019-11-07T16:04:59.768Z] Time:          Thu Nov 07 2019 18:04:59 GMT+0200 (EET)
+[debug] [2019-11-07T16:04:59.768Z] ----------------------------------------------------------------------
+[debug] [2019-11-07T16:04:59.768Z] 
+[debug] [2019-11-07T16:04:59.778Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2019-11-07T16:04:59.778Z] > authorizing via signed-in user
+[debug] [2019-11-07T16:04:59.778Z] [iam] checking project ra-hookah for permissions ["firebase.projects.get"]
+[debug] [2019-11-07T16:04:59.780Z] > refreshing access token with scopes: ["email","https://www.googleapis.com/auth/cloud-platform","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","openid"]
+[debug] [2019-11-07T16:04:59.781Z] >>> HTTP REQUEST POST https://www.googleapis.com/oauth2/v3/token  
+ <request body omitted>
+[debug] [2019-11-07T16:05:00.018Z] <<< HTTP RESPONSE 200
+[debug] [2019-11-07T16:05:00.029Z] >>> HTTP REQUEST POST https://cloudresourcemanager.googleapis.com/v1/projects/ra-hookah:testIamPermissions  
+
+[debug] [2019-11-07T16:05:01.036Z] <<< HTTP RESPONSE 200
+[debug] [2019-11-07T16:05:01.038Z] >>> HTTP REQUEST GET https://firebase.googleapis.com/v1beta1/projects/ra-hookah  
+ 
+[debug] [2019-11-07T16:05:01.531Z] <<< HTTP RESPONSE 200
+[debug] [2019-11-07T16:05:01.537Z] >>> HTTP REQUEST GET https://firebase.googleapis.com/v1beta1/projects/ra-hookah/webApps/-/config  
+ 
+[info] ✔  functions: Using node@8 from host.
+[info] ✔  functions: Emulator started at http://localhost:5001
+[debug] [2019-11-07T16:05:02.351Z] <<< HTTP RESPONSE 200
+[info] i  functions: Watching "/Users/macbook/hookahcode/ra-hookah/functions" for Cloud Functions...
+[debug] [2019-11-07T16:05:02.382Z] [worker-~diagnostic~-10a0d8d2-c8d6-42ef-b438-400e65ee7cbf]: BUSY
+[info] i  hosting: Serving hosting files from: dist
+[info] ✔  hosting: Local server: http://localhost:5000
+[debug] [2019-11-07T16:05:02.732Z] [runtime-status] Functions runtime initialized. {"cwd":"/Users/macbook/hookahcode/ra-hookah/functions","node_version":"8.5.0"}
+[debug] [2019-11-07T16:05:02.735Z] [runtime-status] Disabled runtime features: {"functions_config_helper":true,"network_filtering":true,"timeout":true,"memory_limiting":true,"admin_stubs":true} {}
+[warn] ⚠  The Cloud Functions emulator requires the module "firebase-admin" to be installed. This package is in your package.json, but it's not available. You probably need to run "npm install" in your functions directory.
+[info] i  functions: Your functions could not be parsed due to an issue with your node_modules (see above)
+[debug] [2019-11-07T16:05:02.763Z] [worker-~diagnostic~-10a0d8d2-c8d6-42ef-b438-400e65ee7cbf]: exited
+[debug] [2019-11-07T16:05:02.763Z] [worker-~diagnostic~-10a0d8d2-c8d6-42ef-b438-400e65ee7cbf]: FINISHED
+[info] [hosting] Rewriting /favicon.ico to http://localhost:5001/ra-hookah/us-central1/ssr for local Function ssr
+[debug] [2019-11-07T16:05:19.423Z] Accepted request GET /ra-hookah/us-central1/ssr/favicon.ico --> ssr
+[debug] [2019-11-07T16:05:19.431Z] [worker-ssr-bfa43364-f02f-4831-9d3a-ee60496381d6]: BUSY
+[debug] [2019-11-07T16:05:19.808Z] [runtime-status] Functions runtime initialized. {"cwd":"/Users/macbook/hookahcode/ra-hookah/functions","node_version":"8.5.0"}
+[debug] [2019-11-07T16:05:19.810Z] [runtime-status] Disabled runtime features: {"functions_config_helper":true,"network_filtering":true,"timeout":true,"memory_limiting":true,"admin_stubs":true} {}
+[warn] ⚠  The Cloud Functions emulator requires the module "firebase-admin" to be installed. This package is in your package.json, but it's not available. You probably need to run "npm install" in your functions directory.
+[info] i  functions: Your functions could not be parsed due to an issue with your node_modules (see above)
+[debug] [2019-11-07T16:05:19.830Z] [worker-ssr-bfa43364-f02f-4831-9d3a-ee60496381d6]: exited
+[debug] [2019-11-07T16:05:19.830Z] [worker-ssr-bfa43364-f02f-4831-9d3a-ee60496381d6]: FINISHED

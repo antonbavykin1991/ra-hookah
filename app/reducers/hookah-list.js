@@ -12,7 +12,7 @@ const initialState = {
     name: 'Starbuzz',
     img: '/images/star.jpg',
   },{
-    price: 180,
+    price: 210,
     name: 'Daily hookah',
     img: '/images/daily.jpg',
   }]
